@@ -1,6 +1,7 @@
 [Redux 入门教程（一）：基本用法](http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_one_basic_usages.html)<br>
 [Redux 入门教程（二）：中间件与异步操作](http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_two_async_operations.html)<br>
-[Redux 入门教程（三）：React-Redux 的用法](http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_three_react-redux.html)
+[Redux 入门教程（三）：React-Redux 的用法](http://www.ruanyifeng.com/blog/2016/09/redux_tutorial_part_three_react-redux.html)<br>
+[官方文档](http://cn.redux.js.org/docs/react-redux/api.html#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options)
 
 # 一、redux
 
@@ -92,7 +93,9 @@ class AsyncApp extends Component {
 ```
 const VisibleTodoList = connect(
     mapStateToProps,
-    mapDispatchToProps
+    mapDispatchToProps,
+    mergeProps,
+    options
 )(TodoList)
 ```
 * mapStateToProps是一个函数，将外部state映射到UI组件的props对象上
@@ -144,7 +147,8 @@ const mapDispatchToProps = {
   };
 }
 ```
-
+* mergeProps(stateProps,dispatchProps,ownProps)是一个函数，将返回的对象作为props传递到生成的容器组件中。三个参数分别是mapStateToProps()与mapDispatchToProps()的执行结果和组件自身的props。
+* options是一个对象，可以定制connector的行为。
 ## 2.`<Provider>`组件
 功能：就是传入store<br>
 用法：在根组件外面包一层<Provider><br>
