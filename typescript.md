@@ -139,3 +139,14 @@ interface SquareConfig {
 let squareOptions = { colour: "red", width: 100 };
 let mySquare = createSquare(squareOptions);
 ```
+6、接口也可以描述函数类型。函数的参数会逐个进行检查，要求对应位置上的参数类型是兼容的。<br>
+```
+interface SearchFunc {
+  (source: string, subString: string): boolean;
+}
+let mySearch: SearchFunc;
+mySearch = function(source: string, subString: string) {
+  let result = source.search(subString);
+  return result > -1;
+}
+```
