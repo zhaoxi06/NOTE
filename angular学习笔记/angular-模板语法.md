@@ -203,3 +203,42 @@ trackByHeroes(index: number, hero: Hero): number { return hero.id; }
   ({{hero.id}}) {{hero.name}}
 </div>
 ```
+
+19、ngSwitch指令
+
+```
+//注意：ngSwitch是属性型指令，*ngSwitchCase和*ngSwitchDefault是结构型指令
+<div [ngSwitch]="currentHero.emotion">
+  <app-happy-hero    *ngSwitchCase="'happy'"    [hero]="currentHero"></app-happy-hero>
+  <app-sad-hero      *ngSwitchCase="'sad'"      [hero]="currentHero"></app-sad-hero>
+  <app-confused-hero *ngSwitchCase="'confused'" [hero]="currentHero"></app-confused-hero>
+  <app-unknown-hero  *ngSwitchDefault           [hero]="currentHero"></app-unknown-hero>
+</div>
+```
+
+20、模板引用变量：用来引用模板中的某个DOM元素，它还可以引用angular组件或指令
+```
+<input #phone placeholder="phone number">
+<button (click)="callPhone(phone.value)">Call</button>
+//#phone也可以写成ref-phone
+```
+
+21、非空断言操作符(!)
+>有些变量默认是不允许 null 或 undefined 值的，如果有未赋值的变量，或者试图把 null 或 undefined 赋值给不允许为空的变量，类型检查器就会抛出一个错误。要告诉类型检查器，它不会为空，这时就要用到非空断言操作符。
+
+```
+<!--No hero, no text -->
+<div *ngIf="hero">
+  The hero's name is {{hero!.name}}
+</div>
+```
+
+22、类型转换函数$any
+>有时候，绑定表达式可能会报类型错误，并且它不能火很难指定类型。要消除这种报错，可以使用$any转换函数来把表达式转换成any类型。
+
+```
+<div>
+  The hero's marker is {{$any(hero).marker}}
+</div>
+Undeclared members is {{$any(this).member}}
+```
